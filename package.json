@@ -1,0 +1,15 @@
+{
+    "name": "wix-business-dashboard",
+    "version": "1.0.0",
+    "description": "Self-hosted Wix Dashboard Plugin for AI-powered business setup",
+    "main": "index.js",
+    "scripts": {
+          "start": "node index.js"
+    },
+    "dependencies": {
+          "express": "^4.18.2"
+    },
+    "engines": {
+          "node": ">=18.0.0"
+    }
+}
