@@ -13,6 +13,39 @@ app.use((req, res, next) => {
     next();
 });
 
+
+// Autocomplete proxy
+app.get('/api/autocomplete', async (req, res) => {
+      const input = req.query.input;
+      if (!input || input.length < 2) return res.json({ predictions: [] });
+      try {
+              const url = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + encodeURIComponent(input) + '&types=establishment&key=' + GOOGLE_PLACES_API_KEY;
+              const r = await fetch(url);
+              const data = await r.json();
+              res.json(data);
+      } catch (err) {
+              console.error('Autocomplete error:', err.message);
+              res.status(502).json({ predictions: [] });
+      }
+});
+
+// Business data proxy
+app.post('/api/business', async (req, res) => {
+      const { place_id } = req.body;
+      if (!place_id) return res.status(400).json({ error: 'place_id is required' });
+      try {
+              const r = await fetch(PLACE_INTEL_API_URL + '/business', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ place_id })
+              });
+              const data = await r.json();
+              res.status(r.status).json(data);
+      } catch (err) {
+              console.error('place-intel-api error:', err.message);
+              res.status(502).json({ error: 'Failed to reach place-intel-api' });
+      }
+});
 // Dashboard plugin page
 app.get('/dashboard', (req, res) => {
     res.send(`<!DOCTYPE html>
