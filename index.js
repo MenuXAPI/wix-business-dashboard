@@ -1,4 +1,4 @@
-—const express = require('express');
+const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const PLACE_INTEL_API_URL = process.env.PLACE_INTEL_API_URL || 'https://place-intel-api-production.up.railway.app';
