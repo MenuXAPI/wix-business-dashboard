@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Restart Dev Servers",
+  "description": "Kills any running node and ngrok processes, then opens two new PowerShell windows — one running the Node server and one running ngrok",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "powershell -Command \"Stop-Process -Name node -ErrorAction SilentlyContinue; Stop-Process -Name ngrok -ErrorAction SilentlyContinue; Start-Sleep -Seconds 1; Start-Process powershell -ArgumentList @('-NoExit','-Command','Set-Location $env:USERPROFILE\\wix-business-dashboard\\wix-business-dashboard; node index.js'); Start-Process powershell -ArgumentList @('-NoExit','-Command','C:\\Users\\Miles\\Desktop\\MenuWix\\ngrok.exe http 3000')\""
+  }
+}

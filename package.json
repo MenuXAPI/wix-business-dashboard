@@ -4,12 +4,15 @@
     "description": "Self-hosted Wix Dashboard Plugin for AI-powered business setup",
     "main": "index.js",
     "scripts": {
-          "start": "node index.js"
+        "start": "node index.js"
     },
     "dependencies": {
-          "express": "^4.18.2"
+        "dotenv": "^17.4.1",
+        "express": "^4.18.2",
+        "multer": "^1.4.5-lts.1",
+        "redis": "^5.11.0"
     },
     "engines": {
-          "node": ">=18.0.0"
+        "node": ">=18.0.0"
     }
 }

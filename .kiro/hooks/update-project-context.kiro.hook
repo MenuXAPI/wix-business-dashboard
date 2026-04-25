@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Update Project Context",
+  "description": "After each agent session completes, reviews recent changes and updates PROJECT_CONTEXT.md to reflect the current state of the project",
+  "version": "1",
+  "when": {
+    "type": "agentStop"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the recent changes made in this session and update wix-business-dashboard/PROJECT_CONTEXT.md to reflect the current state of the project. Update the \"Last updated\" date, add any new routes, env vars, UI flows, architectural decisions, or completed checklist items. Keep it concise — this file is used as context for future AI sessions. Do not rewrite sections that haven't changed."
+  }
+}
